@@ -15,3 +15,17 @@ http.createServer(function(request, response){
         '.css' : 'text/css',
         '.jpg' : 'image/jpg'
     };
+    fs.readFile(filePath, function(error, content){
+        if(error){
+            if(error.code == 'ENDENT'){
+                fs.readFile('./404.html',function(error,content){
+                   response.writeHead(200,{'Content-Type':contentType});
+                   response.end(content, 'utf-8.8'); 
+                });
+            }
+            else{
+                response.writeHead(500);
+                response.end('sorry, check with the site admin for ')
+            }
+        }
+    }

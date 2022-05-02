@@ -15,6 +15,7 @@ http.createServer(function(request, response){
         '.css' : 'text/css',
         '.jpg' : 'image/jpg'
     };
+    contentType = mimeTypes[extname] || 'application/octet-stream';
     fs.readFile(filePath, function(error, content){
         if(error){
             if(error.code == 'ENDENT'){
@@ -25,7 +26,13 @@ http.createServer(function(request, response){
             }
             else{
                 response.writeHead(500);
-                response.end('sorry, check with the site admin for ')
+                response.end('sorry, check with the site admin for error: ');
+                response.end();
             }
+        }else{
+            response.writeHead(200, { 'Content-Type': contentType});
+            response.end(content,'utf-8');
         }
-    }
+    });
+}),listen(3000);
+console.log('Server running at http://192.168.50.16:3000/');

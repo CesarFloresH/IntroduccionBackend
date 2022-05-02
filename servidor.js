@@ -21,7 +21,7 @@ http.createServer(function(request, response){
             if(error.code == 'ENDENT'){
                 fs.readFile('./404.html',function(error,content){
                    response.writeHead(200,{'Content-Type':contentType});
-                   response.end(content, 'utf-8.8'); 
+                   response.end(content, 'utf-8'); 
                 });
             }
             else{
@@ -34,5 +34,6 @@ http.createServer(function(request, response){
             response.end(content,'utf-8');
         }
     });
-}),listen(3000);
-console.log('Server running at http://192.168.50.16:3000/');
+}).listen(3000);
+console.log('Server running at http://127.0.0.1:3000/');
+
